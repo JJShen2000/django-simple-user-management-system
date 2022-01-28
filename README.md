@@ -3,6 +3,14 @@ A simple user management system with Django.
 
 Database: `MySQL`
 
+There are three lists in this website.
+- Admin list
+- User list
+- Department list
+They support CRUD operations.
+
+Only admin can login.
+
 ## Login
 ![image](https://user-images.githubusercontent.com/40858520/151502827-4b226cd4-a976-4621-8830-f37bb67436f4.png)
 
