@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div style="margin-bottom: 10px; margin-top: 10px;">
+    <a class="btn btn-success" href="\admin\add">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+        </svg>
+        New Admin
+    </a>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+        heading
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Reset Password</th>
+                    <th scope="col">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in query_set %}
+                <tr>
+                    <th>{{ obj.id }}</th>
+                    <td>{{ obj.user_name }}</td>
+                    <td><a href="/admin/{{ obj.id }}/reset/">Reset Password</a></td>
+                    <td>
+                        <a class="btn btn-primary" href="/admin/{{ obj.id }}/edit/">Edit</a>
+                        <a class="btn btn-danger" href="/admin/{{ obj.id }}/delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% comment %} <ul class="pagination"> {% endcomment %}
+            {{ page_string }}
+        {% comment %} </ul> {% endcomment %}
+    </div>
+</div>
+{% endblock %}

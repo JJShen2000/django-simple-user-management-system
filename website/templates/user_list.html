@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div style="margin-bottom: 10px; margin-top: 10px;">
+    <a class="btn btn-success" href="/user/add/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+        </svg>
+        New User
+    </a>
+    <div style="float: right; width: 300px;"> 
+        <form method="get">
+            <div class="input-group">
+                <div class="form-outline">
+                    <input type="search" name="q" id="form1" class="form-control" placeholder="Search for name" value="{{ search_value }}" />
+                    {% comment %} <label class="form-label" for="form1">Search</label> {% endcomment %}
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    {% comment %} <i class="fas fa-search"></i> {% endcomment %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+        user list
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Create Time</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in query_set %}
+                <tr>
+                    <th>{{ obj.id }}</th>
+                    <th>{{ obj.name }}</th>
+                    <th>{{ obj.dept.title }}</th>
+                    <th>{{ obj.get_gender_display }}</th>
+                    <th>{{ obj.age }}</th>
+                    <th>{{ obj.create_time|date:"Y-m-d H:i:s" }}</th>
+                    <td>
+                        <a class="btn btn-primary" href="/user/{{ obj.id }}/edit/">Edit</a>
+                        <a class="btn btn-danger" href="/user/{{ obj.id }}/delete/">Delete</a>
+                    </td> 
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% comment %} <ul class="pagination"> {% endcomment %}
+        {{ page_string }}
+    {% comment %} </ul> {% endcomment %}
+</div>
+{% endblock %}
