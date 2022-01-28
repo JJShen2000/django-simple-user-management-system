@@ -7,6 +7,7 @@ There are three lists in this website.
 - Admin list
 - User list
 - Department list
+
 They support CRUD operations.
 
 Only admin can login.
